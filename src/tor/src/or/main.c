@@ -317,7 +317,7 @@ connection_remove(connection_t *conn)
             (int)conn->s, conn_type_to_string(conn->type),
             smartlist_len(connection_array));
 
-  if (conn->type == CONN_TYPE_AP && conn->socket_family == AF_UNIX) {
+  if (conn->type == CONN_TYPE_AP && conn->socket_family == AF_ULibercoin) {
     log_info(LD_NET, "Closing SOCKS SocksSocket connection");
   }
 
@@ -2923,9 +2923,9 @@ exit_function(void)
 }
 
 #ifdef _WIN32
-#define UNIX_ONLY 0
+#define ULibercoin_ONLY 0
 #else
-#define UNIX_ONLY 1
+#define ULibercoin_ONLY 1
 #endif
 static struct {
   int signal_value;
@@ -2933,28 +2933,28 @@ static struct {
   struct event *signal_event;
 } signal_handlers[] = {
 #ifdef SIGINT
-  { SIGINT, UNIX_ONLY, NULL }, /* do a controlled slow shutdown */
+  { SIGINT, ULibercoin_ONLY, NULL }, /* do a controlled slow shutdown */
 #endif
 #ifdef SIGTERM
-  { SIGTERM, UNIX_ONLY, NULL }, /* to terminate now */
+  { SIGTERM, ULibercoin_ONLY, NULL }, /* to terminate now */
 #endif
 #ifdef SIGPIPE
-  { SIGPIPE, UNIX_ONLY, NULL }, /* otherwise SIGPIPE kills us */
+  { SIGPIPE, ULibercoin_ONLY, NULL }, /* otherwise SIGPIPE kills us */
 #endif
 #ifdef SIGUSR1
-  { SIGUSR1, UNIX_ONLY, NULL }, /* dump stats */
+  { SIGUSR1, ULibercoin_ONLY, NULL }, /* dump stats */
 #endif
 #ifdef SIGUSR2
-  { SIGUSR2, UNIX_ONLY, NULL }, /* go to loglevel debug */
+  { SIGUSR2, ULibercoin_ONLY, NULL }, /* go to loglevel debug */
 #endif
 #ifdef SIGHUP
-  { SIGHUP, UNIX_ONLY, NULL }, /* to reload config, retry conns, etc */
+  { SIGHUP, ULibercoin_ONLY, NULL }, /* to reload config, retry conns, etc */
 #endif
 #ifdef SIGXFSZ
-  { SIGXFSZ, UNIX_ONLY, NULL }, /* handle file-too-big resource exhaustion */
+  { SIGXFSZ, ULibercoin_ONLY, NULL }, /* handle file-too-big resource exhaustion */
 #endif
 #ifdef SIGCHLD
-  { SIGCHLD, UNIX_ONLY, NULL }, /* handle dns/cpu workers that exit */
+  { SIGCHLD, ULibercoin_ONLY, NULL }, /* handle dns/cpu workers that exit */
 #endif
   /* These are controller-only */
   { SIGNEWNYM, 0, NULL },
@@ -3607,17 +3607,17 @@ sandbox_init_filter(void)
   }
 
   SMARTLIST_FOREACH_BEGIN(get_configured_ports(), port_cfg_t *, port) {
-    if (!port->is_unix_addr)
+    if (!port->is_ulibercoin_addr)
       continue;
-    /* When we open an AF_UNIX address, we want permission to open the
+    /* When we open an AF_ULibercoin address, we want permission to open the
      * directory that holds it. */
-    char *dirname = tor_strdup(port->unix_addr);
+    char *dirname = tor_strdup(port->ulibercoin_addr);
     if (get_parent_directory(dirname) == 0) {
       OPEN(dirname);
     }
     tor_free(dirname);
-    sandbox_cfg_allow_chmod_filename(&cfg, tor_strdup(port->unix_addr));
-    sandbox_cfg_allow_chown_filename(&cfg, tor_strdup(port->unix_addr));
+    sandbox_cfg_allow_chmod_filename(&cfg, tor_strdup(port->ulibercoin_addr));
+    sandbox_cfg_allow_chown_filename(&cfg, tor_strdup(port->ulibercoin_addr));
   } SMARTLIST_FOREACH_END(port);
 
   if (options->DirPortFrontPage) {

@@ -67,8 +67,8 @@ private:
 private Q_SLOTS:
     /** Export button clicked */
     void on_exportButton_clicked();
-    /** Ghost NIX clicked */
-    void on_ghostNIXButton_clicked();
+    /** Ghost Libercoin clicked */
+    void on_ghostLibercoinButton_clicked();
     /** Ghost convert clicked */
     void on_convertGhostButton_clicked();
     /** Ghost To Me checked */

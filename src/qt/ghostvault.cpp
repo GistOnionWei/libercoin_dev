@@ -3,7 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/nix-config.h"
+#include "config/libercoin-config.h"
 #endif
 
 #include "ghostvault.h"
@@ -11,7 +11,7 @@
 
 #include "addresstablemodel.h"
 #include "walletmodel.h"
-#include "nixgui.h"
+#include "libercoingui.h"
 #include "csvmodelwriter.h"
 #include "editaddressdialog.h"
 #include "guiutil.h"
@@ -53,15 +53,15 @@ GhostVault::GhostVault(const PlatformStyle *platformStyle, Mode mode, QWidget *p
     ui->ghostAmount->setValidator( new QIntValidator(1, 9999999, this) );
     ui->labelExplanation->setTextFormat(Qt::RichText);
     ui->labelExplanation->setText(
-            tr("<b>WARNING:</b> The Ghostvault is an experimental add-on, use with caution.<br><br>These are your private coins from ghosting NIX. You can convert ghosted NIX to public coins. The longer your coins are here, the more private they become."));
+            tr("<b>WARNING:</b> The Ghostvault is an experimental add-on, use with caution.<br><br>These are your private coins from ghosting Libercoin. You can convert ghosted Libercoin to public coins. The longer your coins are here, the more private they become."));
     ui->ghostAmount->setVisible(true);
-    ui->ghostNIXButton->setVisible(true);
+    ui->ghostLibercoinButton->setVisible(true);
     ui->convertGhostButton->setVisible(true);
 
-    ui->convertNIXAmount->clear();
+    ui->convertLibercoinAmount->clear();
 
-    ui->unconfirmed_label->setText(QString::number(vpwallets.front()->GetGhostBalanceUnconfirmed()/COIN) + tr(" Unconfirmed NIX"));
-    ui->total->setText(QString::number(vpwallets.front()->GetGhostBalance()/COIN) + tr(" Ghosted NIX"));
+    ui->unconfirmed_label->setText(QString::number(vpwallets.front()->GetGhostBalanceUnconfirmed()/COIN) + tr(" Unconfirmed Libercoin"));
+    ui->total->setText(QString::number(vpwallets.front()->GetGhostBalance()/COIN) + tr(" Ghosted Libercoin"));
 
     // Build context menu
     contextMenu = new QMenu(this);
@@ -140,7 +140,7 @@ void GhostVault::setWalletModel(WalletModel *walletmodel) {
     }
 }
 
-void GhostVault::on_ghostNIXButton_clicked() { 
+void GhostVault::on_ghostLibercoinButton_clicked() { 
     QString amount = ui->ghostAmount->text();
     QString address = ui->ghostTo->text();
     std::string denomAmount = amount.toStdString();
@@ -180,18 +180,18 @@ void GhostVault::on_ghostNIXButton_clicked() {
         if(!walletModel->getWallet()->GhostModeMintTrigger(denomAmount,pubCoinScripts)){
 
             QMessageBox::critical(this, tr("Error"),
-                                  tr("You cannot ghost NIX at the moment. Please check the debug.log for errors."),
+                                  tr("You cannot ghost Libercoin at the moment. Please check the debug.log for errors."),
                                   QMessageBox::Ok, QMessageBox::Ok);
 
         }else{
             QMessageBox::information(this, tr("Success"),
-                                          tr("You have successfully ghosted NIX from your wallet"),
+                                          tr("You have successfully ghosted Libercoin from your wallet"),
                                           QMessageBox::Ok, QMessageBox::Ok);
 
-            ui->total->setText(QString::number(vpwallets.front()->GetGhostBalance()/COIN) + tr(" Ghosted NIX"));
-            ui->unconfirmed_label->setText(QString::number(vpwallets.front()->GetGhostBalanceUnconfirmed()/COIN) + tr(" Unconfirmed NIX"));
+            ui->total->setText(QString::number(vpwallets.front()->GetGhostBalance()/COIN) + tr(" Ghosted Libercoin"));
+            ui->unconfirmed_label->setText(QString::number(vpwallets.front()->GetGhostBalanceUnconfirmed()/COIN) + tr(" Unconfirmed Libercoin"));
 
-            ui->convertNIXAmount->clear();
+            ui->convertLibercoinAmount->clear();
             ui->ghostAmount->clear();
         }
     }
@@ -199,19 +199,19 @@ void GhostVault::on_ghostNIXButton_clicked() {
         if(!walletModel->getWallet()->GhostModeMintTrigger(denomAmount, pubCoinScripts)){
 
             QMessageBox::critical(this, tr("Error"),
-                                  tr("You cannot ghost NIX at the moment. Please check the debug.log for errors."),
+                                  tr("You cannot ghost Libercoin at the moment. Please check the debug.log for errors."),
                                   QMessageBox::Ok, QMessageBox::Ok);
 
         }else{
             QMessageBox::information(this, tr("Success"),
-                                          tr("You have successfully ghosted NIX from your wallet"),
+                                          tr("You have successfully ghosted Libercoin from your wallet"),
                                           QMessageBox::Ok, QMessageBox::Ok);
 
 
-            ui->total->setText(QString::number(vpwallets.front()->GetGhostBalance()/COIN) + tr(" Ghosted NIX"));
-            ui->unconfirmed_label->setText(QString::number(vpwallets.front()->GetGhostBalanceUnconfirmed()/COIN) + tr(" Unconfirmed NIX"));
+            ui->total->setText(QString::number(vpwallets.front()->GetGhostBalance()/COIN) + tr(" Ghosted Libercoin"));
+            ui->unconfirmed_label->setText(QString::number(vpwallets.front()->GetGhostBalanceUnconfirmed()/COIN) + tr(" Unconfirmed Libercoin"));
 
-            ui->convertNIXAmount->clear();
+            ui->convertLibercoinAmount->clear();
             ui->ghostAmount->clear();
         }
     }
@@ -219,21 +219,21 @@ void GhostVault::on_ghostNIXButton_clicked() {
 
 void GhostVault::on_convertGhostButton_clicked() {
 
-    QString amount = ui->convertNIXAmount->text();
+    QString amount = ui->convertLibercoinAmount->text();
     QString address = ui->convertGhostToThirdPartyAddress->text();
     std::string denomAmount = amount.toStdString();
     std::string thirdPartyAddress = address.toStdString();
     std::string stringError;
 
-    CBitcoinAddress nixAddress;
+    CBitcoinAddress libercoinAddress;
     CommitmentKeyPack keyPack;
 
     // Address
-    nixAddress = CBitcoinAddress(thirdPartyAddress);
+    libercoinAddress = CBitcoinAddress(thirdPartyAddress);
     vector<CScript> pubCoinScripts = vector<CScript>();
     pubCoinScripts.clear();
 
-    if(ui->convertGhostToMeCheckBox->isChecked() == false && !nixAddress.IsValid()){
+    if(ui->convertGhostToMeCheckBox->isChecked() == false && !libercoinAddress.IsValid()){
         keyPack = CommitmentKeyPack(thirdPartyAddress);
         if(!keyPack.IsValidPack()){
             QMessageBox::critical(this, tr("Error"),
@@ -259,7 +259,7 @@ void GhostVault::on_convertGhostButton_clicked() {
             return;
         }
 
-        std::string successfulString = "Sucessfully sent " + denomAmount + " ghosted NIX";
+        std::string successfulString = "Sucessfully sent " + denomAmount + " ghosted Libercoin";
 
         if(walletModel->getWallet()->IsLocked()){
             WalletModel::UnlockContext ctx(walletModel->requestUnlock());
@@ -278,16 +278,16 @@ void GhostVault::on_convertGhostButton_clicked() {
             QString t = tr(stringError.c_str());
 
             QMessageBox::critical(this, tr("Error"),
-                                  tr("You cannot convert ghosted NIX at the moment. %1").arg(t),
+                                  tr("You cannot convert ghosted Libercoin at the moment. %1").arg(t),
                                   QMessageBox::Ok, QMessageBox::Ok);
         }else{
             QMessageBox::information(this, tr("Success"),
-                                          tr("You have successfully converted your ghosted NIX from your wallet"),
+                                          tr("You have successfully converted your ghosted Libercoin from your wallet"),
                                           QMessageBox::Ok, QMessageBox::Ok);
 
-            ui->unconfirmed_label->setText(QString::number(vpwallets.front()->GetGhostBalanceUnconfirmed()/COIN) + tr(" Unconfirmed NIX"));
+            ui->unconfirmed_label->setText(QString::number(vpwallets.front()->GetGhostBalanceUnconfirmed()/COIN) + tr(" Unconfirmed Libercoin"));
 
-            ui->total->setText(QString::number(vpwallets.front()->GetGhostBalance()/COIN) + tr(" Ghosted NIX"));
+            ui->total->setText(QString::number(vpwallets.front()->GetGhostBalance()/COIN) + tr(" Ghosted Libercoin"));
         }
 
         ui->convertGhostToThirdPartyAddress->clear();
@@ -350,8 +350,8 @@ void GhostVault::selectNewAddress(const QModelIndex &parent, int begin, int /*en
 }
 
 void GhostVault::setVaultBalance(CAmount confirmed, CAmount unconfirmed){
-    ui->total->setText(QString::number(confirmed/COIN) + tr(" Ghosted NIX"));
-    ui->unconfirmed_label->setText(QString::number(unconfirmed/COIN) + tr(" Unconfirmed NIX"));
+    ui->total->setText(QString::number(confirmed/COIN) + tr(" Ghosted Libercoin"));
+    ui->unconfirmed_label->setText(QString::number(unconfirmed/COIN) + tr(" Unconfirmed Libercoin"));
 }
 
 void GhostVault::setKeyList(){
