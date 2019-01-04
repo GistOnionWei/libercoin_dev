@@ -56,9 +56,12 @@ public:
      */
     enum Unit
     {
-        BTC,
-        mBTC,
-        uBTC
+        LBR,
+        cLBR,
+        mLBR,
+        uLBR,
+        nLBR,
+        pLBR
     };
 
     enum SeparatorStyle

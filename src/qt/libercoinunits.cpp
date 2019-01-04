@@ -17,9 +17,12 @@ BitcoinUnits::BitcoinUnits(QObject *parent):
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(BTC);
-    unitlist.append(mBTC);
-    unitlist.append(uBTC);
+    unitlist.append(LBR);
+    unitlist.append(cLBR);
+    unitlist.append(mLBR);
+    unitlist.append(nLBR);
+    unitlist.append(pLBR);
+
     return unitlist;
 }
 
@@ -27,9 +30,12 @@ bool BitcoinUnits::valid(int unit)
 {
     switch(unit)
     {
-    case BTC:
-    case mBTC:
-    case uBTC:
+    case LBR:
+    case cLBR:
+    case mLBR:
+    case uLBR:
+    case nLBR:
+    case pLBR:
         return true;
     default:
         return false;
@@ -40,9 +46,12 @@ QString BitcoinUnits::longName(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("Libercoin");
-    case mBTC: return QString("mLibercoin");
-    case uBTC: return QString::fromUtf8("µLibercoin (Libercoin bits)");
+    case LBR: return QString("LBR");
+    case cLBR: return QString("cLBR");
+    case mLBR: return QString("mLBR");
+    case uLBR: return QString::fromUtf8("µLBR");
+    case nLBR: return QString("nLBR");
+    case pLBR: return QString("pLBR");
     default: return QString("???");
     }
 }
@@ -51,7 +60,8 @@ QString BitcoinUnits::shortName(int unit)
 {
     switch(unit)
     {
-    case uBTC: return QString::fromUtf8("Libercoin bits");
+    case uLBR: return QString::fromUtf8("Libercoin bits");
+    case pLBR: return QString::fromUtf8("Libereum");
     default:   return longName(unit);
     }
 }
@@ -60,9 +70,12 @@ QString BitcoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case BTC: return QString("Libercoin coins");
-    case mBTC: return QString("Milli-Libercoin coins (1 / 1" THIN_SP_UTF8 "000)");
-    case uBTC: return QString("Micro-Libercoin coins (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case LBR: return QString("Libercoin");
+    case cLBR: return QString("Centi-Libercoin (1 / 1" THIN_SP_UTF8 "00)");
+    case mLBR: return QString("Milli-Libercoin (1 / 1" THIN_SP_UTF8 "000)");
+    case uLBR: return QString("Micro-Libercoin (bits) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case nLBR: return QString("Nano-Libercoin (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case nLBR: return QString("Pico-Libercoin (Libereum) (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }
@@ -71,10 +84,13 @@ qint64 BitcoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case BTC:  return 100000000;
-    case mBTC: return 100000;
-    case uBTC: return 100;
-    default:   return 100000000;
+    case LBR:  return 1000000000000;
+    case LBR:  return 10000000000;
+    case mLBR: return 1000000000;
+    case uLBR: return 1000000;
+    case nLBR: return 1000;
+    case pLBR: return 1;
+    default:   return 1000000000000;
     }
 }
 
@@ -82,9 +98,12 @@ int BitcoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case BTC: return 8;
-    case mBTC: return 5;
-    case uBTC: return 2;
+    case LBR: return 12;
+    case LBR: return 10;
+    case mLBR: return 9;
+    case uLBR: return 6;
+    case nLBR: return 3;
+    case pLBR: return 0;
     default: return 0;
     }
 }
