@@ -60,10 +60,10 @@ most likely to be the case with the Qt packages.
 
 ## BerkeleyDB
 
-The `build-ulibercoin.md` file recommends building against BerkeleyDB 4.8.30. Even if
+The `build-unix.md` file recommends building against BerkeleyDB 4.8.30. Even if
 that is the version your Linux distribution ships with, it probably is a good
 idea to build Libercoin Core against a static version of that library compiled
-according to the instructions in the `build-ulibercoin.md` file so that any changes
+according to the instructions in the `build-unix.md` file so that any changes
 the distribution may make in the future will not result in a problem for users.
 
 The problem that can exist, clients built against different versions of

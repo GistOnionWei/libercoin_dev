@@ -525,7 +525,7 @@ UniValue setmocktime(const JSONRPCRequest& request)
             "setmocktime timestamp\n"
             "\nSet the local time to given timestamp (-regtest only)\n"
             "\nArguments:\n"
-            "1. timestamp  (integer, required) Ulibercoin seconds-since-epoch timestamp\n"
+            "1. timestamp  (integer, required) Unix seconds-since-epoch timestamp\n"
             "   Pass 0 to go back to using the system time."
         );
 

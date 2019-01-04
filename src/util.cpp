@@ -622,7 +622,7 @@ fs::path GetDefaultDataDir()
     // Windows < Vista: C:\Documents and Settings\Username\Application Data\libercoin
     // Windows >= Vista: C:\Users\Username\AppData\Roaming\libercoin
     // Mac: ~/Library/Application Support/libercoin
-    // Ulibercoin: ~/.libercoin
+    // Unix: ~/.libercoin
 #ifdef WIN32
     // Windows
     return GetSpecialFolderPath(CSIDL_APPDATA) / "libercoin";
@@ -637,7 +637,7 @@ fs::path GetDefaultDataDir()
     // Mac
     return pathRet / "Library/Application Support/libercoin";
 #else
-    // Ulibercoin
+    // Unix
     return pathRet / ".libercoin";
 #endif
 #endif

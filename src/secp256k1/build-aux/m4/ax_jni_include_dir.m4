@@ -100,12 +100,12 @@ case "$host_os" in
 bsdi*)          _JNI_INC_SUBDIRS="bsdos";;
 darwin*)        _JNI_INC_SUBDIRS="darwin";;
 freebsd*)       _JNI_INC_SUBDIRS="freebsd";;
-linux*)         _JNI_INC_SUBDIRS="linux genulibercoin";;
+linux*)         _JNI_INC_SUBDIRS="linux genunix";;
 osf*)           _JNI_INC_SUBDIRS="alpha";;
 solaris*)       _JNI_INC_SUBDIRS="solaris";;
 mingw*)		_JNI_INC_SUBDIRS="win32";;
 cygwin*)	_JNI_INC_SUBDIRS="win32";;
-*)              _JNI_INC_SUBDIRS="genulibercoin";;
+*)              _JNI_INC_SUBDIRS="genunix";;
 esac
 
 if test "x$ac_cv_jni_header_path" != "xnone"; then

@@ -43,7 +43,7 @@ Compatibility
 Libercoin Core is extensively tested on multiple operating systems using
 the Linux kernel, macOS 10.8+, and Windows Vista and later. Windows XP is not supported.
 
-Libercoin Core should also work on most other Ulibercoin-like systems but is not
+Libercoin Core should also work on most other Unix-like systems but is not
 frequently tested on them.
 
 Notable changes

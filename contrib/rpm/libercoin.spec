@@ -160,7 +160,7 @@ cp -p %{SOURCE30} %{SOURCE31} %{SOURCE32} SELinux/
 
 %build
 CWD=`pwd`
-cd db-%{bdbv}.NC/build_ulibercoin/
+cd db-%{bdbv}.NC/build_unix/
 ../dist/configure --enable-cxx --disable-shared --with-pic --prefix=${CWD}/db4
 make install
 cd ../..

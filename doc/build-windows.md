@@ -43,7 +43,7 @@ To install WSL on Windows 10 with Fall Creators Update installed (version >= 162
   * Click Install
 3. Complete Installation
   * Open a cmd prompt and type "Ubuntu"
-  * Create a new ULibercoin user account (this is a separate account from your Windows account)
+  * Create a new Unix user account (this is a separate account from your Windows account)
 
 After the bash shell is active, you can follow the instructions below, starting
 with the "Cross-compilation" section. Compiling the 64-bit version is

@@ -1,6 +1,6 @@
-ULibercoin BUILD NOTES
+Unix BUILD NOTES
 ====================
-Some notes on how to build Libercoin Core in Ulibercoin.
+Some notes on how to build Libercoin Core in Unix.
 
 (for OpenBSD specific instructions, see [build-openbsd.md](build-openbsd.md))
 

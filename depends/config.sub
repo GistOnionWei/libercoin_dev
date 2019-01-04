@@ -464,7 +464,7 @@ case $basic_machine in
 		basic_machine=i386-unknown
 		os=-bsd
 		;;
-	3b1 | 7300 | 7300-att | att-7300 | pc7300 | safari | ulibercoinpc)
+	3b1 | 7300 | 7300-att | att-7300 | pc7300 | safari | unixpc)
 		basic_machine=m68000-att
 		;;
 	3b*)
@@ -508,7 +508,7 @@ case $basic_machine in
 		basic_machine=m68k-unknown
 		os=-amigaos
 		;;
-	amigaulibercoin | amix)
+	amigaunix | amix)
 		basic_machine=m68k-unknown
 		os=-sysv4
 		;;
@@ -1381,7 +1381,7 @@ case $os in
 	-svr4*)
 		os=-sysv4
 		;;
-	-ulibercoinware*)
+	-unixware*)
 		os=-sysv4.2uw
 		;;
 	-gnu/linux*)

@@ -276,7 +276,7 @@ public:
 
         chainTxData = ChainTxData{
                 //block 108750 (0x22712c14439959794cf3af0340757fa2b746ae06a945e8964264bc4b08d9b6ef)
-            1543963824, // * ULibercoin timestamp of last known number of transactions
+            1543963824, // * Unix timestamp of last known number of transactions
             137164,  // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             0.009889085387575334  // * estimated number of transactions per second after that timestamp

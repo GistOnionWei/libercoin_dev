@@ -914,7 +914,7 @@ UniValue pruneblockchain(const JSONRPCRequest& request)
         throw std::runtime_error(
             "pruneblockchain\n"
             "\nArguments:\n"
-            "1. \"height\"       (numeric, required) The block height to prune up to. May be set to a discrete height, or a ulibercoin timestamp\n"
+            "1. \"height\"       (numeric, required) The block height to prune up to. May be set to a discrete height, or a unix timestamp\n"
             "                  to prune blocks whose block time is at least 2 hours older than the provided timestamp.\n"
             "\nResult:\n"
             "n    (numeric) Height of the last block pruned.\n"
@@ -1559,7 +1559,7 @@ UniValue getchaintxstats(const JSONRPCRequest& request)
             "2. \"blockhash\"  (string, optional) The hash of the block that ends the window.\n"
             "\nResult:\n"
             "{\n"
-            "  \"time\": xxxxx,                (numeric) The timestamp for the final block in the window in ULibercoin format.\n"
+            "  \"time\": xxxxx,                (numeric) The timestamp for the final block in the window in Unix format.\n"
             "  \"txcount\": xxxxx,             (numeric) The total number of transactions in the chain up to that point.\n"
             "  \"window_block_count\": xxxxx,  (numeric) Size of the window in number of blocks.\n"
             "  \"window_tx_count\": xxxxx,     (numeric) The number of transactions in the window. Only returned if \"window_block_count\" is > 0.\n"

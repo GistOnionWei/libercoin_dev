@@ -11,7 +11,7 @@ Running
 ---------------------
 The following are some helpful notes on how to run Libercoin on your native platform.
 
-### Ulibercoin
+### Unix
 
 Unpack the files into a directory and run:
 
@@ -39,7 +39,7 @@ The following are developer notes on how to build Libercoin on your native platf
 
 - [Dependencies](dependencies.md)
 - [OS X Build Notes](build-osx.md)
-- [Ulibercoin Build Notes](build-ulibercoin.md)
+- [Unix Build Notes](build-unix.md)
 - [Windows Build Notes](build-windows.md)
 - [OpenBSD Build Notes](build-openbsd.md)
 - [Gitian Building Guide](gitian-building.md)

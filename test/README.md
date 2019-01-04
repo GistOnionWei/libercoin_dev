@@ -25,7 +25,7 @@ Build for your system first. Be sure to enable wallet, utils and daemon when you
 
 The ZMQ functional test requires a python ZMQ library. To install it:
 
-- on Ulibercoin, run `sudo apt-get install python3-zmq`
+- on Unix, run `sudo apt-get install python3-zmq`
 - on mac OS, run `pip3 install pyzmq`
 
 #### Running the tests
