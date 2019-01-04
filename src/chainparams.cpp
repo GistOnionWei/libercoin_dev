@@ -209,7 +209,7 @@ public:
         pchMessageStart[1] = 0xb4;
         pchMessageStart[2] = 0xbe;
         pchMessageStart[3] = 0xf9;
-        nDefaultPort = 6214;
+        nDefaultPort = 2048;
         nBIP44ID = 0x8000002C;
         nPruneAfterHeight = 0;
 
