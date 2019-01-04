@@ -219,13 +219,13 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0xdd28ad86def767c3cfc34267a950d871fc7462bc57ea4a929fc3596d9b598e41"));
         assert(genesis.hashMerkleRoot == uint256S("0x06c118557a3a44b144a31c9f3a967bd94f94e0d7ff666d30587360f695f0873d"));
 
-        vSeeds.emplace_back("ny.libercoinplatform.io");
-        vSeeds.emplace_back("sf.libercoinplatform.io");
-        vSeeds.emplace_back("ldn.libercoinplatform.io");
-        vSeeds.emplace_back("fra.libercoinplatform.io");
-        vSeeds.emplace_back("tor.libercoinplatform.io");
-        vSeeds.emplace_back("sgp.libercoinplatform.io");
-        vSeeds.emplace_back("blr.libercoinplatform.io");
+        vSeeds.emplace_back("node0.liberco.in");
+        vSeeds.emplace_back("node1.liberco.in");
+        vSeeds.emplace_back("node2.liberco.in");
+        vSeeds.emplace_back("node3.liberco.in");
+        vSeeds.emplace_back("node4.liberco.in");
+        vSeeds.emplace_back("node5.liberco.in");
+        vSeeds.emplace_back("onion.liberco.in");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,38);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,53);
@@ -366,7 +366,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("testnet.libercoinplatform.io");
+        vSeeds.emplace_back("testnet.liberco.in");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,1);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,3);
