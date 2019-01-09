@@ -61,7 +61,7 @@ QString BitcoinUnits::shortName(int unit)
     switch(unit)
     {
     case uLBR: return QString::fromUtf8("Libercoin bits");
-    case pLBR: return QString::fromUtf8("Libereum");
+    case nLBR: return QString::fromUtf8("Libereum");
     default:   return longName(unit);
     }
 }
@@ -85,7 +85,7 @@ qint64 BitcoinUnits::factor(int unit)
     switch(unit)
     {
     case LBR:  return 1000000000000;
-    case LBR:  return 10000000000;
+    case cLBR:  return 10000000000;
     case mLBR: return 1000000000;
     case uLBR: return 1000000;
     case nLBR: return 1000;
@@ -99,7 +99,7 @@ int BitcoinUnits::decimals(int unit)
     switch(unit)
     {
     case LBR: return 12;
-    case LBR: return 10;
+    case cLBR: return 10;
     case mLBR: return 9;
     case uLBR: return 6;
     case nLBR: return 3;

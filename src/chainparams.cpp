@@ -63,23 +63,49 @@ void CChainParams::UpdateVersionBitsParameters(Consensus::DeploymentPos d, int64
 
 CAmount GetInitialRewards(int nHeight, const Consensus::Params& consensusParams)
 {
-    int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
-    // Force block reward to zero when right shift is undefined.
-    if (halvings >= 64)
-        return 0;
-
-    CAmount nSubsidy = 64 * COIN;
-    // Subsidy is cut in half every 1,050,000 blocks which will occur approximately every 4 years.
-    nSubsidy >>= halvings;
-    //On genesis, create 38 million Libercoin for the Zoin airdrop
-    if(nHeight == 1)
-        nSubsidy = 38000000 * COIN;
-
-    //stop halving when subsidy reaches 1 coin per block
-    if(nSubsidy < (1 * COIN))
-        nSubsidy = 1*COIN;
-
-    return nSubsidy;
+     if (210240 >= nHeight){
+        nSubsidy = 16 * COIN;
+		return nSubsidy;
+    }
+	
+	if (630720 >= nHeight) {
+		nSubsidy = 8 * COIN;
+		return nSubsidy;
+		
+	}
+	
+	if (1471680 >= nHeight) {
+		nSubsidy = 4 * COIN;
+		return nSubsidy;		
+	}
+	
+	if (2522880 >= nHeight) { 
+		nSubsidy = 2 * COIN;
+		return nSubsidy;
+	}
+	
+	if (3994560 >= nHeight) {
+		nSubsidy = 1 * COIN;
+		return nSubsidy;
+	}
+	
+	if (6096960 >= nHeight) {
+		nSubsidy = 0.5 * COIN;
+		return nSubsidy;
+	}
+	
+	if (9040320 >= nHeight) {
+		nSubsidy = 0.25 * COIN;
+		return nSubsidy;
+	}
+	
+	if (13419200 >= nHeight) {
+		nSubsidy = 0.125 * COIN;
+		return nSubsidy;
+	}
+	
+	if (nHeight < 13419200) {
+		return 0;
 }
 
 int64_t CChainParams::GetCoinYearReward(int64_t nTime) const
@@ -258,7 +284,7 @@ public:
 
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
-        fMineBlocksOnDemand = false;
+        fMineBlocksOnDemand = true;
 
         checkpointData = {
             {
